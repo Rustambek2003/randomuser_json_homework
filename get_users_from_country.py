@@ -1,3 +1,4 @@
+from get_users import read_json
 def get_users_from_country(data:dict, country:str)->list:
     """Gets all users from a country from the data
     Args:
@@ -6,4 +7,15 @@ def get_users_from_country(data:dict, country:str)->list:
     Returns:
         list: A list of users
     """
-    pass
+    ans = []
+    data = data['users']
+    for i in data:
+        i = i['name']
+        ans.append(f"{i['title']} {i['first']} {i['last']}")
+    return ans
+data = read_json("users.json")
+count = data['users']
+country = ''
+for i in count:
+    country += i['country'] + ' '
+print(get_users_from_country(data,country))
