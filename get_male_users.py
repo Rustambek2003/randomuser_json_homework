@@ -1,3 +1,4 @@
+from get_users import read_json
 def get_male_users(data:dict)->list:
     """Gets all male users from the data
     Args:
@@ -5,4 +6,13 @@ def get_male_users(data:dict)->list:
     Returns:
         list: A list of users
     """
-    pass
+    ans = []
+    data = data['users']
+    for i in data:
+        if i['gender'] == "male":
+            i = i['name']
+            ans.append(f"{i['title']} {i['first']} {i['last']}")
+    return ans
+
+data = read_json('users.json')
+print(get_male_users(data))
