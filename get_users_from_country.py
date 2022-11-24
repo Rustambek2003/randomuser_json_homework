@@ -10,12 +10,10 @@ def get_users_from_country(data:dict, country:str)->list:
     ans = []
     data = data['users']
     for i in data:
-        i = i['name']
-        ans.append(f"{i['title']} {i['first']} {i['last']}")
+        if i['country'] == country:
+            i = i['name']
+            ans.append(f"{i['title']} {i['first']} {i['last']}")
     return ans
 data = read_json("users.json")
-count = data['users']
-country = ''
-for i in count:
-    country += i['country'] + ' '
-print(get_users_from_country(data,country))
+
+print(get_users_from_country(data,'USA'))
